@@ -16,7 +16,7 @@ export function addUser(newUser: User) {
 // profile
 export function getUserById() {
   // get userId from sessionStorage
-  const userId = JSON.parse(sessionStorage.getItem("userId") as string);
+  const userId = sessionStorage.getItem("userId");
 
   // get request for user full details
   return axios.get(`${api}/${userId}`);
