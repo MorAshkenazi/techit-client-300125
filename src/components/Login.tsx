@@ -19,6 +19,7 @@ const Login: FunctionComponent<LoginProps> = () => {
         .then((res) => {
           if (res.data.length) {
             navigate("/home");
+            sessionStorage.setItem("userId", res.data[0].id);
           } else {
             alert("Wrong email or password");
           }

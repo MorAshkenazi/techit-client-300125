@@ -1,9 +1,15 @@
 import { FunctionComponent } from "react";
+import Navbar from "./Navbar";
 
 interface HomeProps {}
 
 const Home: FunctionComponent<HomeProps> = () => {
-  return <>HOME</>;
+  return (
+    <>
+      <Navbar />
+      HOME
+    </>
+  );
 };
 
 export default Home;

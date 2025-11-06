@@ -14,3 +14,10 @@ export function addUser(newUser: User) {
 }
 
 // profile
+export function getUserById() {
+  // get userId from sessionStorage
+  const userId = JSON.parse(sessionStorage.getItem("userId") as string);
+
+  // get request for user full details
+  return axios.get(`${api}/${userId}`);
+}
