@@ -3,11 +3,13 @@ import Navbar from "./Navbar";
 import { getAllProducts } from "../services/productsService";
 import Product from "../interfaces/Product";
 import { getUserById } from "../services/usersService";
+import AddProductModal from "./AddProductModal";
 
 interface ProductsProps {}
 
 const Products: FunctionComponent<ProductsProps> = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [productsChanged, setProductsChanged] = useState<boolean>(false);
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const [showAdd, setShowAdd] = useState<boolean>(false);
 
@@ -25,7 +27,9 @@ const Products: FunctionComponent<ProductsProps> = () => {
         setProducts(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [productsChanged]);
+
+  const refresh = () => setProductsChanged(!productsChanged);
 
   return (
     <>
@@ -85,6 +89,13 @@ const Products: FunctionComponent<ProductsProps> = () => {
           )}
         </div>
       </div>
+      <AddProductModal
+        show={showAdd}
+        onHide={() => {
+          setShowAdd(false);
+          refresh();
+        }}
+      />
     </>
   );
 };
