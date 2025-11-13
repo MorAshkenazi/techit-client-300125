@@ -4,6 +4,8 @@ import { getAllProducts } from "../services/productsService";
 import Product from "../interfaces/Product";
 import { getUserById } from "../services/usersService";
 import AddProductModal from "./AddProductModal";
+import DeleteProductModal from "./DeleteProductModal";
+import UpdateProductModal from "./UpdateProductModal";
 
 interface ProductsProps {}
 
@@ -12,6 +14,9 @@ const Products: FunctionComponent<ProductsProps> = () => {
   const [productsChanged, setProductsChanged] = useState<boolean>(false);
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const [showAdd, setShowAdd] = useState<boolean>(false);
+  const [showDelete, setShowDelete] = useState<boolean>(false);
+  const [showUpdate, setShowUpdate] = useState<boolean>(false);
+  const [productId, setProductId] = useState<string>("");
 
   useEffect(() => {
     getUserById()
@@ -73,10 +78,22 @@ const Products: FunctionComponent<ProductsProps> = () => {
                   </button>
                   {isAdmin && (
                     <>
-                      <button className="btn btn-warning mx-1 px-2">
+                      <button
+                        className="btn btn-warning mx-1 px-2"
+                        onClick={() => {
+                          setShowUpdate(true);
+                          setProductId(product.id as string);
+                        }}
+                      >
                         <i className="fa-solid fa-pen"></i>
                       </button>
-                      <button className="btn btn-danger px-2">
+                      <button
+                        className="btn btn-danger px-2"
+                        onClick={() => {
+                          setShowDelete(true);
+                          setProductId(product.id as string);
+                        }}
+                      >
                         <i className="fa-solid fa-trash"></i>
                       </button>
                     </>
@@ -95,6 +112,22 @@ const Products: FunctionComponent<ProductsProps> = () => {
           setShowAdd(false);
           refresh();
         }}
+      />
+      <DeleteProductModal
+        show={showDelete}
+        onHide={() => {
+          setShowDelete(false);
+          refresh();
+        }}
+        productId={productId}
+      />
+      <UpdateProductModal
+        show={showUpdate}
+        onHide={() => {
+          setShowUpdate(false);
+          refresh();
+        }}
+        productId={productId}
       />
     </>
   );

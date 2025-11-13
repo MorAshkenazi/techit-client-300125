@@ -48,25 +48,16 @@
       "description": "Wondeful laptops",
       "image": "https://www.asus.com/media/Odin/Websites/global/Series/12.png",
       "id": "3",
-      "quantity": 0
+      "quantity": 2
     },
     {
       "id": "081a",
       "name": "mor",
-      "price": 45,
+      "price": 65,
       "category": "hghgh",
       "description": "kkk",
       "image": "https://git-scm.com/images/logo@2x.png",
-      "quantity": 14
-    },
-    {
-      "id": "e0ef",
-      "name": "ffff",
-      "price": 100,
-      "category": "ggg",
-      "description": "Earth's mightiest heroes must come together and learn to fight as a team to stop the mischievous Loki.",
-      "image": "https://git-scm.com/images/logo@2x.png",
-      "quantity": 5
+      "quantity": 0
     }
   ]
 }
