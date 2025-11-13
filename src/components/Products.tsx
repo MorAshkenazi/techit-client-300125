@@ -6,6 +6,7 @@ import { getUserById } from "../services/usersService";
 import AddProductModal from "./AddProductModal";
 import DeleteProductModal from "./DeleteProductModal";
 import UpdateProductModal from "./UpdateProductModal";
+import { addToCart } from "../services/cartsService";
 
 interface ProductsProps {}
 
@@ -73,6 +74,13 @@ const Products: FunctionComponent<ProductsProps> = () => {
                   <button
                     className="btn btn-primary"
                     disabled={!product.quantity}
+                    onClick={() => {
+                      addToCart(product)
+                        .then(() => {
+                          alert("Product was added to cart successfully!");
+                        })
+                        .catch((err) => console.log(err));
+                    }}
                   >
                     <i className="fa-solid fa-cart-shopping"></i> Add to Cart
                   </button>
